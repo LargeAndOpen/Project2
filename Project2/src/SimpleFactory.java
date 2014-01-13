@@ -2,6 +2,13 @@
 
 // Simple Factory
 public class SimpleFactory {
+	
+	// 取得資料庫的 Instance
+	public Database getDatabase()
+	{
+		Database database = new Database();
+		return database;
+	}
 
 	// 取得美食的 Instance
 	public Foodinfo getFoodinfo()

@@ -7,7 +7,7 @@ import java.sql.Statement;
 public class Database {
 	
 	// 連線
-	private Connection con;
+	public Connection con;
 	
 	// Database資訊
 	public static String db_driver = "org.postgresql.Driver"; 
@@ -52,37 +52,4 @@ public class Database {
 		}
 	}
 	
-	// 測試敘述句
-	public void test_query(){
-		
-		// 嘗試
-		try{
-			// 敘述子
-			Statement st = con.createStatement();
-			
-			// 符合該縣市的項目
-			String sql = "SELECT * FROM food WHERE address LIKE '%高雄%';";
-			
-			// 取得Response
-			ResultSet rs = st.executeQuery(sql);
-			
-			// 列出所有符合項目(最多前10個)
-			int i=0;
-			while (rs.next()&&i<10) {
-				
-				// 印出
-				System.out.println(rs.getString("title"));
-				
-				// 遞增
-				i++;
-			}
-			st.close();
-			
-		}catch(Exception ee){
-			
-			// 提示訊息
-			System.out.println("Query錯誤");
-			System.out.println(ee.getMessage());
-		}
-	}
 }
