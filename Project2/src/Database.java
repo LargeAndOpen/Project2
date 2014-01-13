@@ -1,0 +1,88 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+// 建立資料庫
+public class Database {
+	
+	// 連線
+	private Connection con;
+	
+	// Database資訊
+	public static String db_driver = "org.postgresql.Driver"; 
+	public static String db_url = "jdbc:postgresql://210.61.10.89:9999/Team8";
+	public static String db_user = "Team8";
+	public static String db_passwd = "LAO2013";
+	
+	// 建立連線
+	public void start_link(){
+		
+		// 嘗試
+		try{
+			// 新的instance
+			Class.forName(db_driver).newInstance();
+			
+			// 建立連線
+			con = DriverManager.getConnection(db_url,db_user,db_passwd);
+		}
+		// 例外處理
+		catch(Exception ee){
+			
+			// 提示訊息 
+			System.out.println("資料庫建立連線失敗");
+			System.out.println(ee.getMessage());
+		}
+	}
+	
+	// 結束連線
+	public void end_link(){
+		
+		// 嘗試
+		try{
+			// 連線結束				
+			con.close();
+			
+		// 例外處理
+		}catch(Exception ee){
+			
+			// 提示訊息 
+			System.out.println("資料庫結束失敗");
+			System.out.println(ee.getMessage());
+		}
+	}
+	
+	// 測試敘述句
+	public void test_query(){
+		
+		// 嘗試
+		try{
+			// 敘述子
+			Statement st = con.createStatement();
+			
+			// 符合該縣市的項目
+			String sql = "SELECT * FROM food WHERE address LIKE '%高雄%';";
+			
+			// 取得Response
+			ResultSet rs = st.executeQuery(sql);
+			
+			// 列出所有符合項目(最多前10個)
+			int i=0;
+			while (rs.next()&&i<10) {
+				
+				// 印出
+				System.out.println(rs.getString("title"));
+				
+				// 遞增
+				i++;
+			}
+			st.close();
+			
+		}catch(Exception ee){
+			
+			// 提示訊息
+			System.out.println("Query錯誤");
+			System.out.println(ee.getMessage());
+		}
+	}
+}
