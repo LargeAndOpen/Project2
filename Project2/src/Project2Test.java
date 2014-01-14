@@ -36,7 +36,7 @@ public class Project2Test {
 			String result = foodinfo.getFirstFromCity("台北");
 			
 			// 比較
-	        assertEquals(expected, result);
+			assertEquals(expected, result);
 		}
 		catch(Exception ee)	{
 			
@@ -58,7 +58,7 @@ public class Project2Test {
 			String result = siteinfo.getFirstFromCity("台北");
 			
 			// 比較
-	        assertEquals(expected, result);
+			assertEquals(expected, result);
 		}
 		catch(Exception ee)	{
 			
@@ -80,7 +80,7 @@ public class Project2Test {
 			String result = liveinfo.getFirstFromCity("台北");
 			
 			// 比較
-	        assertEquals(expected, result);
+			assertEquals(expected, result);
 		}
 		catch(Exception ee)	{
 			
