@@ -7,33 +7,6 @@ public class Project2 {
 	// 程式進入點
 	public static void main(String[] args)
 	{
-		// 測試Jmail
-		Jmail sm=new Jmail("smtp.gmail.com");
-		sm.props.put("mail.smtp.starttls.enable", "true");
-		
-		// 寄信者的信箱帳密
-		sm.setNamePass(" largeteam8@gmail.com","largeeight");
-		
-		// 主旨(可中文)
-		sm.setSubject("LAO report");
-		
-		// 寄信人
-		sm.setFrom("largeteam8@gmail.com");
-         
-		// 收件人
-		sm.setTo("kevinx6000@gmail.com");
-		String content = "這是信件內容嘿!";
-		
-		// 設定信件內容
-		sm.setBody(content);
-		sm.setNeedAuth(true);
-		
-		// 寄信
-		System.out.print("正在嘗試發送Email...");
-		boolean b=sm.setOut();
-		if(b) System.out.println("發送成功!");
-		else System.out.println("發送失敗!");
-		
 		// Simple Factory
 		SimpleFactory sf = new SimpleFactory();
 		
