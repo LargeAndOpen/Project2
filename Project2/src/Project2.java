@@ -29,18 +29,15 @@ public class Project2 {
 		
 		// 美食資訊
 		Foodinfo fi = sf.getFoodinfo();
-		//fi.printResult(city, db);
-		System.out.println(fi.getFirstFromCity(city));
+		fi.printResult(city, db);
 		
 		// 景點資訊
 		Siteinfo si = sf.getSiteinfo();
-		//si.printResult(city, db);
-		System.out.println(si.getFirstFromCity(city));
+		si.printResult(city, db);
 		
 		// 住宿資訊
 		Liveinfo li = sf.getLiveinfo();
-		//li.printResult(city, db);
-		System.out.println(li.getFirstFromCity(city));
+		li.printResult(city, db);
 		
 		// 資料庫結束
 		db.end_link();
