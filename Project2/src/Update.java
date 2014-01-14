@@ -1,11 +1,6 @@
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.sql.Statement;
 
 import org.json.JSONArray;
@@ -34,7 +29,7 @@ public class Update {
 	private static String[] files = { "food", "site", "live" };
 
 	// Parse資料並存進資料庫
-	private static void update(Database db) {
+	private static void update(Database db, FileManager fm) {
 
 		int i = 0;
 
@@ -66,7 +61,7 @@ public class Update {
 				
 				// 將資料寫入txt檔
 				System.out.print("取得" + files[seq] + "資料中...");
-				getFilefromUrl(urls[seq], files[seq] + ".txt");
+				fm.getFilefromUrl(urls[seq], files[seq] + ".txt");
 				System.out.println("完成");
 
 				// 讀檔
@@ -168,50 +163,6 @@ public class Update {
 		}
 	}
 
-	// 取得某網址的檔案
-	private static void getFilefromUrl(String urlstring, String objfile){
-		
-		// 嘗試
-		try {
-			// 新檔案
-			File desFile = new File(objfile);
-	
-			// 如果檔案已存在，刪除原來的檔案
-			if (desFile.exists()) desFile.delete();
-	
-			// 取得URL
-			URL url = new URL(urlstring);
-			URLConnection connection = url.openConnection();
-
-			// buffer
-			byte[] data = new byte[1];
-
-			// 設定接收資料流來源 ,就是要下載的網址
-			BufferedInputStream bufferedInputStream = new BufferedInputStream(
-					connection.getInputStream());
-
-			// 設定　儲存 要下載檔案的位置.
-			BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(
-					new FileOutputStream(desFile));
-			while (bufferedInputStream.read(data) != -1) {
-				bufferedOutputStream.write(data);
-			}
-
-			// 將緩衝區中的資料全部寫出
-			bufferedOutputStream.flush();
-
-			// 關閉資料流
-			bufferedInputStream.close();
-			bufferedOutputStream.close();
-			
-		} catch (Exception ee) {
-
-			// 提示訊息
-			System.out.println("取得網路內容失敗");
-			System.out.println(ee.getMessage());
-		}
-	}
-
 	// 程式進入點
 	public static void main(String[] args)
 	{
@@ -221,9 +172,12 @@ public class Update {
 		// 資料庫
 		Database db = sf.getDatabase();
 		db.start_link();
+		
+		// 檔案管理
+		FileManager fm = sf.getFileManager();
 
 		// 檢查更新，並Parse資料、存進資料庫
-		update(db);
+		update(db, fm);
 
 		// 結束連線
 		db.end_link();

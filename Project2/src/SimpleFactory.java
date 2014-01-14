@@ -9,6 +9,13 @@ public class SimpleFactory {
 		Database database = new Database();
 		return database;
 	}
+	
+	// 取得檔案管理員的 Instance
+	public FileManager getFileManager()
+	{
+		FileManager fileManager = new FileManager();
+		return fileManager;
+	}
 
 	// 取得美食的 Instance
 	public Foodinfo getFoodinfo()
