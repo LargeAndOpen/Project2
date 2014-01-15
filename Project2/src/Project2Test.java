@@ -6,7 +6,7 @@ import org.junit.Test;
 
 // Junit Test
 public class Project2Test {
-That's test it!
+
 	private SimpleFactory sf;
 	private Foodinfo foodinfo;
 	private Siteinfo siteinfo;
