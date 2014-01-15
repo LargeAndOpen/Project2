@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project basedir="." default="main" name="Project2">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../../桌面/eclipse"/>
+    <property name="ECLIPSE_HOME" value="/home/kevin/桌面/eclipse"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
